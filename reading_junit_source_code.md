@@ -30,7 +30,7 @@ Now we are ready to run and test the code.
 
 Below is JUnit's package structure:
 
-![Package Stucture](1.png =300x)
+![Package Stucture](1.png)
 
 The core code is in junit.framework package. Package junit.runner is for running the test cases, in which BaseTestRunner is an abstract class. Package Junit.awtui, junit.swingui, junit.textui are three different graphical interfaces to run test cases, each package has a TestRunner inherited from junit.runner.BaseTestRunner.
 
@@ -38,7 +38,7 @@ The code I red is mainly in junit.framework package, junit.textui package, and t
 
 Below is the class diagram:
 
-![Class Diagram](2.png =500x)
+![Class Diagram](2.png)
 
 ### Running Process of JUnit
 
@@ -57,7 +57,7 @@ JUnit's running process can be divided into three steps, preparaing test cases, 
 
 Below is the sequence diagram:
 
-![Sequence Diagram](3.png =500x)
+![Sequence Diagram](3.png)
 
 ### Design Pattern in JUnit
 

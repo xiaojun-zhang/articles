@@ -1,9 +1,9 @@
-#Reading JUnit Source Code
+# Reading JUnit Source Code
 Robin Zhang
 
 JUnit is a widely used unit testing tool in Java projects, and the source code is extremely simple and elegant. It's a very good choice for Java programers who want to digging into source code and open source projects. The JUnit version discussed in this article is 3.8.2 .
 
-###Preparation and JUnit Basic Usage
+### Preparation and JUnit Basic Usage
 First step is to download the JUnit source code, create a new project in Eclipse, and then import the downloaded JUnit code.
 
 Second step is to define the code to be tested. Below is the code, it's very simple, just calculates the sum of two integers.
@@ -27,7 +27,7 @@ In the above code, the testAdd() method is parsed as a test case. You can also d
 
 Now we are ready to run and test the code. 
 
-###JUnit Source Code Structure
+### JUnit Source Code Structure
 
 Below is JUnit's package structure:
 
@@ -41,7 +41,7 @@ Below is the class diagram:
 
 ![Class Diagram](2.png =500x)
 
-###Running Process of JUnit
+### Running Process of JUnit
 
 JUnit's running process can be divided into three steps, preparaing test cases, running test cases and collecting test results. In following code, getTest(testcase) is to prepare test cases, doRun(suite, wait) is to run the test cases:
 
@@ -60,9 +60,18 @@ Below is the sequence diagram:
 
 ![Sequence Diagram](3.png =500x)
 
-###Design Pattern in JUnit####CompositeJUnit uses composite pattern when creating test cases. Junit.framework.Test is the interface that defines the test case, which includes both run() and countTestCases () methods. TestCase and TestSuite are two classes that implement the interface, TestCase is for single test case, and TestSuite is for a  collection of test cases.####Observer
-Observer pattern is used when collecting test results. junit.framework.TestResult manges a collection of TestListeners, these TestLiteners will be notified when execution of test case is failed.
-Manage a collection of TestListener:
+### Design Pattern in JUnit
+
+#### Composite
+
+JUnit uses composite pattern when creating test cases. Junit.framework.Test is the interface that defines the test case, which includes both run() and countTestCases () methods. TestCase and TestSuite are two classes that implement the interface, TestCase is for single test case, and TestSuite is for a  collection of test cases.
+
+#### Observer
+
+Observer pattern is used when collecting test results. junit.framework.TestResult manges a collection of TestListeners, these TestLiteners will be notified when execution of test case is failed.
+
+
+Manage a collection of TestListener:
 
     /**
     * Registers a TestListener
@@ -76,13 +85,20 @@ Below is the sequence diagram:
     */
     public synchronized void removeListener(TestListenser listener) {
         fListeners.removeElement(listener);
-    }When the test case fails to execute, notify TestListenner to handle the errors:
+    }
+
+
+When the test case fails to execute, notify TestListenner to handle the errors:
 
     public synchronized void addError(Test test, Throwable t) {
         fErrors.addElement(new TestFailure(test, t));
         for (Enumeration e = cloneListeners().elements; e.hasMoreElements; ) {
             ((TestListener)e.nextElement()).addError(test, t);
         }
-    }####Template Method
-Template mode is relatively simple, it's used in BaseTestRunner.getTest(), TestCase.runBare().
-
+    }
+
+
+#### Template Method
+
+Template mode is relatively simple, it's used in BaseTestRunner.getTest(), TestCase.runBare().
+

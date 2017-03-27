@@ -1,5 +1,4 @@
 # Reading JUnit Source Code
-Robin Zhang
 
 JUnit is a widely used unit testing tool in Java projects, and the source code is extremely simple and elegant. It's a very good choice for Java programers who want to digging into source code and open source projects. The JUnit version discussed in this article is 3.8.2 .
 
